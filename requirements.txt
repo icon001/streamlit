@@ -3,4 +3,4 @@ numpy
 pandas
 pypi
 tensorflow
-opencv-python
+h5py==2.9.0
