@@ -3,4 +3,4 @@ numpy
 pandas
 pypi
 tensorflow
-cv2
+opencv-python==4.1.0.25
