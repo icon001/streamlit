@@ -9,4 +9,4 @@ tensorflow
 pandas_datareader
 cryptocmd
 plotly
-opencv-python>=4.1
+opencv-python==4.5.2
