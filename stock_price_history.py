@@ -7,7 +7,7 @@ st.write('''
 ''')
 
 # https://finance.yahoo.com/quote/005930.KS?p=005930.KS
-df = pdr.get_data_yahoo('005930.KS', '2020-01-01', '2020-09-30')
+df = pdr.get_data_yahoo('005930.KS', '2022-01-01', '2022-12-01')
 
 st.line_chart(df.Close)
 st.line_chart(df.Volume)
