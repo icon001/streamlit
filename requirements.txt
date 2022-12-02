@@ -6,3 +6,4 @@ numpy
 pandas
 pypi
 tensorflow
+pandas_datareader
