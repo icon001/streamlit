@@ -1,13 +1,23 @@
 import streamlit as st
-import pandas_datareader as pdr
+from cryptocmd import CmcScraper
+import plotly.express as px
+from datetime import datetime
 
-st.write('''
-# 삼성전자 주식 데이터
-마감 가격과 거래량을 차트로 보여줍니다!
-''')
+st.write('# Cryptocurrency Web App')
 
-# https://finance.yahoo.com/quote/005930.KS?p=005930.KS
-df = pdr.get_data_yahoo('005930.KS', '2022-01-01', '2022-12-01')
+st.sidebar.header('Menu')
 
-st.line_chart(df.Close)
-st.line_chart(df.Volume)
+name = st.sidebar.selectbox('Name', ['BTC', 'ETH', 'USDT'])
+
+start_date = st.sidebar.date_input('Start date', datetime(2021, 1, 1))
+end_date = st.sidebar.date_input('End date', datetime(2021, 1, 7))
+
+# https://coinmarketcap.com
+scraper = CmcScraper(name, start_date.strftime('%d-%m-%Y'), end_date.strftime('%d-%m-%Y')) # '%d-%m-%Y'
+df = scraper.get_dataframe()
+
+fig_close = px.line(df, x='Date', y=['Open', 'High', 'Low', 'Close'], title='Price')
+fig_volume = px.line(df, x='Date', y=['Volume'], title='Volume')
+
+st.plotly_chart(fig_close)
+st.plotly_chart(fig_volume)
